@@ -1,17 +1,28 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { schema } from './graphql/schema';
-import { fetchDeliveries } from './graphql/resolver';
+import { fetchDeliveries, fetchDelivery, fetchItems, fetchItem } from './graphql/resolver';
+const cors = require( `cors` );
 
 function createServer() {
-  const server = express();
+  const corsOpt = {
+    origin(origin: any, callback: any) {
+      callback(null, true);
+    },
+    credentials: true
+  };
 
+  const server = express();
+  server.use(cors(corsOpt));
   server.use(
     '/graphql',
     graphqlHTTP({
       schema: schema,
       rootValue: {
-        fetchDeliveries,
+        deliveries: fetchDeliveries,
+        delivery: fetchDelivery,
+        items: fetchItems,
+        item: fetchItem,
       },
       graphiql: true,
     })

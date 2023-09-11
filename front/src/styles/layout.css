@@ -20,3 +20,20 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.products-grid {
+  display: flex;
+}
+
+.products-grid .product-card {
+  border: 1px solid #f3f3f3;
+  padding: 1em;
+  border-radius: 1em;
+  margin-right: .5em;
+  max-width: 33%;
+}
+
+.products-grid .product-card img {
+  max-width: 212px;
+  height: auto;
+}
